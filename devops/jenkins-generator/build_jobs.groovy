@@ -72,7 +72,7 @@ def createJob(app, data){
 }
 
 
-private String getShell(app) {
+private String getShell(app, data) {
 
     String var_shell
     var_shell="""
