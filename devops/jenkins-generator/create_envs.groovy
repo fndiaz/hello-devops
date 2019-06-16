@@ -7,6 +7,7 @@
 //  println "generating application $name"
 //  println name
   //println data
+println "init"
 createJob("https://github.com/fndiaz/hello-devops.git")
 //}
 
@@ -31,7 +32,7 @@ def createJob(repo){
     }
       println "pre shell"
       steps {
-      shell(getShell(data))
+      shell("teste")
       }
       println "pos shell"
   }
