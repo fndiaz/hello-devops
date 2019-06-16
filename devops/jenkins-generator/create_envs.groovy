@@ -12,7 +12,7 @@ createJob("https://github.com/fndiaz/hello-devops.git")
 
 
 def createJob(repo){
-
+  println "run.."
   job("create-envs") {
     scm {
         git {
@@ -29,10 +29,11 @@ def createJob(repo){
       artifactDaysToKeep(-1)
       artifactNumToKeep(-1)
     }
-
+      println "pre shell"
       steps {
       shell(getShell(data))
       }
+      println "pos shell"
   }
 }
 
