@@ -7,4 +7,6 @@ data:
     mysql -u fndiaz -pfndiaz hello -e \
     "CREATE DATABASE IF NOT EXISTS hello;
     USE hello;
-    CREATE TABLE IF NOT EXISTS Messages99 (ID int NOT NULL AUTO_INCREMENT, message VARCHAR(255), PRIMARY KEY (ID));"
+    CREATE TABLE IF NOT EXISTS Messages (ID int NOT NULL AUTO_INCREMENT, message VARCHAR(255), PRIMARY KEY (ID));"
+    mysql -padmin -e \
+    "ALTER USER 'fndiaz' IDENTIFIED WITH mysql_native_password BY 'fndiaz';"
