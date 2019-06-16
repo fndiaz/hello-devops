@@ -108,14 +108,18 @@ def createView(app, data) {
 
 
 def createPipeline(app, data) {
-	buildPipelineView("Pipeline ${app}") {
-	    filterBuildQueue()
-	    filterExecutors()
-	    title('Pipeline ${app}')
-	    displayedBuilds(5)
-	    selectedJob("build-${app}")
-	    alwaysAllowManualTrigger()
-	    showPipelineParameters()
-	    refreshFrequency(60)
+	deliveryPipelineView('Pipeline ${app}') {
+	    pipelineInstances(5)
+	    showAggregatedPipeline()
+	    columns(3)
+	    sorting(Sorting.TITLE)
+	    updateInterval(10)
+	    enableManualTriggers()
+	    showAvatars()
+	    showChangeLog()
+	    allowPipelineStart()
+	    pipelines {
+	        component('build-${app', 'build-${app')
+	    }
 	}
 }
