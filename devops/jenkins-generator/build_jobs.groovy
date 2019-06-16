@@ -1,7 +1,7 @@
 def slurper = new ConfigSlurper()
 // fix classloader problem using ConfigSlurper in job dsl
 slurper.classLoader = this.class.classLoader
-def config = slurper.parse(readFileFromWorkspace('build_jobs.dsl'))
+def config = slurper.parse(readFileFromWorkspace('devops/jenkins-generator/build_jobs.dsl'))
 
 config.app_job.each { name, data ->
   println "generating build $name"
