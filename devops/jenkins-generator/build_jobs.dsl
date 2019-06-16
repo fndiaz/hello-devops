@@ -20,8 +20,12 @@ app_job {
 }
 
 list_views {
-  'Builds View'{
+  'View Builds'{
     description = "builds jobs"
     regex = '.*build.*'
+  }
+  'View Deploy'{
+    description = "deploy jobs"
+    regex = '.*deploy.*'
   }
 }
