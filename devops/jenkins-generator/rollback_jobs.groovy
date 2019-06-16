@@ -54,7 +54,7 @@ private String getShell(app, data) {
     String var_shell
     var_shell="""
 cd devops/kubernetes
-kubectl rollback undo deployment/${app}"""
+kubectl rollout undo deployment/${app}"""
 
  	return var_shell
 }
