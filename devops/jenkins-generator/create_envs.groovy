@@ -25,7 +25,7 @@ def createJob(repo){
 
     logRotator {
       daysToKeep(-1)
-      numToKeep(data.rotate_builds)
+      numToKeep(10)
       artifactDaysToKeep(-1)
       artifactNumToKeep(-1)
     }
