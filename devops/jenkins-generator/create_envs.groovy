@@ -51,10 +51,14 @@ kubectl create -f deploy-hello-python.yml
 kubectl create -f service-mysql.yml
 kubectl create -f service-rabbit.yml
 kubectl create -f service-rabbit-web.yml
-POD=\$(kubectl get pod -l app=mysql -o jsonpath="{.items[0].metadata.name}")
-sleep 40
 kubectl exec -ti \$POD sh /usr/local/mysql-init.sh
 kubectl create -f deploy-hello-node.yml
+until \$(curl --output /dev/null --silent --head --fail http://\$ELB); do
+    printf '.'
+    sleep 5
+done
+sleep 10
+POD=\$(kubectl get pod -l app=mysql -o jsonpath="{.items[0].metadata.name}")
 ELB=\$(kubectl get services service-hello-python -o jsonpath="{.status.loadBalancer.ingress[0].hostname}")
 echo "URL: http://\$ELB"
 """
