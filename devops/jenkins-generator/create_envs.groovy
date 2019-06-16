@@ -39,25 +39,3 @@ def createJob(repo){
 }
 
 
-private String getShell(data) {
-
-    String var_shell
-    var_shell="""
-cd devops/kubernetes
-kubectl create -f configmap-script-mysql.yml
-kubectl create -f pv-mysql.yml
-kubectl create -f deploy-mysql.yml
-kubectl create -f deploy-rabbit.yml
-kubectl create -f deploy-hello-python.yml
-kubectl create -f deploy-hello-node.yml
-kubectl create -f service-mysql.yml
-kubectl create -f service-rabbit.yml
-kubectl create -f service-rabbit-web.yml
-kubectl create -f service-hello-python
-kubectl get svc service-hello-python"""
-
-  return var_shell
-}
-
-
-
