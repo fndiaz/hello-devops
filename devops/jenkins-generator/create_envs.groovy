@@ -1,41 +1,34 @@
-//def slurper = new ConfigSlurper()
-// fix classloader problem using ConfigSlurper in job dsl
-//slurper.classLoader = this.class.classLoader
-//def config = slurper.parse(readFileFromWorkspace('deploy.dsl'))
+job("DSL-Tutorial-2-Test") {
 
-//config.app_job.each { name, data ->
-//  println "generating application $name"
-//  println name
-  //println data
-println "init"
-createJob("https://github.com/fndiaz/hello-devops.git")
-//}
-
-
-def createJob(repo){
-  println "run.."
-  job("create-envs") {
-    scm {
-        git {
-        remote {
-                url(repo)
-              }
-            branch("master")
-        }
-    }
-
-    logRotator {
-      daysToKeep(-1)
-      numToKeep(data.rotate_builds)
-      artifactDaysToKeep(-1)
-      artifactNumToKeep(-1)
-    }
-      println "pre shell"
-      steps {
-      shell("teste")
+  scm {
+    git {
+      remote {
+        url("git@bitbucket.org:teste/n.git")
       }
-      println "pos shell"
+      branch("master")
+    }
   }
+  
+  publishers {
+    //downstream("testes-ui-homol", "success")
+      buildPipelineTrigger('rbenv')
+  }
+  
+  logRotator {
+        numToKeep(5)
+        artifactNumToKeep(1)
+    }
+  
+  
+        triggers {
+              cron('') 
+            }
+     
+      wrappers {
+            rbenv('2.1.2') {
+                ignoreLocalVersion()
+                gems('bundler', 'rake')
+            }
+      }
+
 }
-
-
