@@ -69,7 +69,7 @@ private String getShell(app, data) {
     String var_shell
     var_shell="""
 cd ${app}
-docker build -t fndiaz/hello-python:\$GIT_COMMIT .
+docker build -t ${data.user_dockerhub}/${app}:\$GIT_COMMIT .
 echo \$DOCKERUSER
 echo \$DOCKERPASS
 docker login -u \$DOCKERUSER -p \$DOCKERPASS
