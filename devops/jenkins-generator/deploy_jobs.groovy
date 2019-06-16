@@ -17,7 +17,7 @@ config.list_views.each { name, data ->
   createView(name, data)
 }
 
-config.list_views.each { name, data ->
+config.app_job.each { name, data ->
   println "generating Pipeline $name"
   //println name
   //println data
