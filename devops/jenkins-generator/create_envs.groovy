@@ -53,9 +53,9 @@ kubectl create -f service-rabbit.yml
 kubectl create -f service-rabbit-web.yml
 kubectl create -f deploy-hello-node.yml
 printf "Waiting ELB"
-sleep 120
 ELB=\$(kubectl get services service-hello-python -o jsonpath="{.status.loadBalancer.ingress[0].hostname}")
 until \$(curl --output /dev/null --silent --head --fail http://\$ELB); do
+    ELB=\$(kubectl get services service-hello-python -o jsonpath="{.status.loadBalancer.ingress[0].hostname}")
     printf 'Waiting HealthCheck'
     sleep 5
 done
