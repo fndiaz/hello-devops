@@ -80,7 +80,7 @@ cd hello-python
 docker build -t fndiaz/hello-python:\$GIT_COMMIT .
 echo \$DOCKERUSER
 echo \$DOCKERPASS
-docker login -u $DOCKERUSER -p \$DOCKERPASS
+docker login -u \$DOCKERUSER -p \$DOCKERPASS
 docker push ${user_dockerhub}/${app}:\$GIT_COMMIT"""
 
  	return var_shell
