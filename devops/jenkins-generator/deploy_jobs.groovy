@@ -51,7 +51,7 @@ def createJob(app, data){
 
         try {
 		     publishers {
-        		buildPipelineTrigger("deploy-${app}")
+        		buildPipelineTrigger("rollback-${app}")
     		}
         }
         catch (MissingPropertyExceptionmpe) {
@@ -73,11 +73,12 @@ def createJob(app, data){
 
 
 private String getShell(app, data) {
+	println "${data}"
 
     String var_shell
     var_shell="""
-	cd devops/kubernetes
-	kubectl set image deployment/${app} ${app}=${data.user_dockerhub}/${app}:\$GIT_COMMIT"""
+cd devops/kubernetes
+kubectl set image deployment/${app} ${app}=${data.user_dockerhub}/${app}:\$GIT_COMMIT"""
 
  	return var_shell
 }
