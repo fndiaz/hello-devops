@@ -46,7 +46,7 @@ def createJob(app, data){
     	}
 
 	    steps {
-			shell(getShell(app))
+			shell(getShell(app, data))
 	    }
 
         try {
