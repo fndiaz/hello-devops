@@ -119,7 +119,7 @@ def createPipeline(app, data) {
 	    showChangeLog()
 	    allowPipelineStart()
 	    pipelines {
-	        component('build-${app', 'build-${app}')
+	        component('build-${app}', 'build-${app}')
 	    }
 	}
 }
