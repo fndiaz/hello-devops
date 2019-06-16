@@ -52,10 +52,11 @@ kubectl create -f service-mysql.yml
 kubectl create -f service-rabbit.yml
 kubectl create -f service-rabbit-web.yml
 kubectl create -f deploy-hello-node.yml
-sleep 20
+printf "Waiting ELB"
+sleep 60
 ELB=\$(kubectl get services service-hello-python -o jsonpath="{.status.loadBalancer.ingress[0].hostname}")
 until \$(curl --output /dev/null --silent --head --fail http://\$ELB); do
-    printf '.'
+    printf 'Waiting HealthCheck'
     sleep 5
 done
 POD=\$(kubectl get pod -l app=mysql -o jsonpath="{.items[0].metadata.name}")
