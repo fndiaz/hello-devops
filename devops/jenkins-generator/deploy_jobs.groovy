@@ -108,7 +108,7 @@ def createView(app, data) {
 
 
 def createPipeline(app, data) {
-	deliveryPipelineView('Pipeline ${app}') {
+	deliveryPipelineView("Pipeline ${app}") {
 	    pipelineInstances(5)
 	    showAggregatedPipeline()
 	    columns(3)
@@ -119,7 +119,7 @@ def createPipeline(app, data) {
 	    showChangeLog()
 	    allowPipelineStart()
 	    pipelines {
-	        component('build-${app}', 'build-${app}')
+	        component("build-${app}", "build-${app}")
 	    }
 	}
 }
