@@ -28,4 +28,8 @@ list_views {
     description = "deploy jobs"
     regex = '.*deploy.*'
   }
+  'View Rollback'{
+    description = "rollback jobs"
+    regex = '.*rollback.*'
+  }
 }

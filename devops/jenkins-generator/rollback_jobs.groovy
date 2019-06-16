@@ -4,14 +4,14 @@ slurper.classLoader = this.class.classLoader
 def config = slurper.parse(readFileFromWorkspace('devops/jenkins-generator/variables.dsl'))
 
 config.app_job.each { name, data ->
-  println "generating deploy $name"
+  println "generating rollback $name"
   //println name
   //println data
   createJob(name, data)
 }
 
 config.list_views.each { name, data ->
-  println "generating deploy $name"
+  println "generating rollback $name"
   //println name
   //println data
   createView(name, data)
@@ -22,7 +22,7 @@ config.list_views.each { name, data ->
 
 def createJob(app, data){
 
-	job("deploy-${app}") {
+	job("rollback-${app}") {
 		scm {
 	    	git {
 				remote {
@@ -44,16 +44,6 @@ def createJob(app, data){
 	    }
 
         try {
-		     publishers {
-        		buildPipelineTrigger("rollback-${app}")
-    		}
-        }
-        catch (MissingPropertyExceptionmpe) {
-        	println 'pos build nao configurado'
-        }
-
-
-        try {
         	triggers {
             	cron(data."${enviroment}".cron)
             }
@@ -72,7 +62,7 @@ private String getShell(app, data) {
     String var_shell
     var_shell="""
 cd devops/kubernetes
-kubectl set image deployment/${app} ${app}=${data.user_dockerhub}/${app}:\$GIT_COMMIT"""
+kubectl rollback undo deployment/${app}"""
 
  	return var_shell
 }
