@@ -51,7 +51,7 @@ kubectl create -f deploy-hello-node.yml
 kubectl create -f service-mysql.yml
 kubectl create -f service-rabbit.yml
 kubectl create -f service-rabbit-web.yml
-kubectl create -f service-hello-python
+kubectl create -f service-hello-python.yml
 kubectl get svc service-hello-python"""
 
   return var_shell
