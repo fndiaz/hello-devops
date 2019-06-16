@@ -10,14 +10,6 @@ config.app_job.each { name, data ->
   createJob(name, data)
 }
 
-config.list_views.each { name, data ->
-  println "generating rollback $name"
-  //println name
-  //println data
-  createView(name, data)
-}
-
-
 
 
 def createJob(app, data){
@@ -67,29 +59,6 @@ kubectl rollback undo deployment/${app}"""
  	return var_shell
 }
 
-
-def createView(app, data) {
-
-	listView("${app}") {
-	    description("${data.description}")
-	    filterBuildQueue()
-	    filterExecutors()
-	    jobs {
-	        //name('release-projectA')
-	        regex(/${data.regex}/)
-	    }
-	    columns {
-	        status()
-	        weather()
-	        name()
-	        lastSuccess()
-	        lastFailure()
-	        lastDuration()
-	        buildButton()
-	    }
-	}
-
-}
 
 
 

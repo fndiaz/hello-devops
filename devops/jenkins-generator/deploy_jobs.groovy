@@ -11,13 +11,18 @@ config.app_job.each { name, data ->
 }
 
 config.list_views.each { name, data ->
-  println "generating deploy $name"
+  println "generating view $name"
   //println name
   //println data
   createView(name, data)
 }
 
-
+config.list_views.each { name, data ->
+  println "generating Pipeline $name"
+  //println name
+  //println data
+  createPipeline(name, data)
+}
 
 
 def createJob(app, data){
@@ -102,4 +107,15 @@ def createView(app, data) {
 }
 
 
-
+def createPipeline(app, data) {
+	buildPipelineView("Pipeline ${app}") {
+	    filterBuildQueue()
+	    filterExecutors()
+	    title('Pipeline ${app}')
+	    displayedBuilds(5)
+	    selectedJob("build-${app}")
+	    alwaysAllowManualTrigger()
+	    showPipelineParameters()
+	    refreshFrequency(60)
+	}
+}
