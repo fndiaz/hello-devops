@@ -13,7 +13,7 @@ createJob("https://github.com/fndiaz/hello-devops.git")
 
 def createJob(repo){
 
-  job("${app}") {
+  job("create_envs") {
     scm {
         git {
         remote {
