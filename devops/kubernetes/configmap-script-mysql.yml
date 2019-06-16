@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mysql-init
+data:
+  mysql-init.sh: |
+    mysql -u fndiaz -pfndiaz hello -e \
+    "CREATE DATABASE IF NOT EXISTS hello;
+    USE hello;
+    CREATE TABLE IF NOT EXISTS Messages99 (ID int NOT NULL AUTO_INCREMENT, message VARCHAR(255), PRIMARY KEY (ID));"

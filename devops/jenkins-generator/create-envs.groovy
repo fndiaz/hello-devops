@@ -41,7 +41,7 @@ private String getShell(data) {
 
     String var_shell
     var_shell="""
-cd devops/jenkins/generator
+cd devops/kubernetes
 kubectl create -f configmap-script-mysql.yml
 kubectl create -f pv-mysql.yml
 kubectl create -f deploy-mysql.yml
