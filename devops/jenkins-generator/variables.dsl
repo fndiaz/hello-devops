@@ -5,7 +5,7 @@ app_job {
     rotate_builds = 10
     pos_build = 'deploy-hello-node'
     credentials = 'dockerhub'
-    user_dockerhub = 'fndiaz'
+    user_dockerhub = 'helloapp'
   }
 
   'hello-node' {
@@ -14,7 +14,7 @@ app_job {
     rotate_builds = 10
     pos_build = 'deploy-hello-node'
     credentials = 'dockerhub'
-    user_dockerhub = 'fndiaz'
+    user_dockerhub = 'helloapp'
   }
 
 }
