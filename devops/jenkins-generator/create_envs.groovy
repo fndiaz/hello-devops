@@ -91,13 +91,13 @@ def createJob2(repo){
     }
 
       steps {
-      shell(getShell())
+      shell(getShell2())
       }
   }
 }
 
 
-private String getShell() {
+private String getShell2() {
 
     String var_shell
     var_shell="""
