@@ -8,6 +8,7 @@
 //  println name
   //println data
 createJob("https://github.com/fndiaz/hello-devops.git")
+createJob2("https://github.com/fndiaz/hello-devops.git"
 //}
 
 
@@ -69,3 +70,65 @@ echo "URL: http://\$ELB"
 
 
 
+def createJob2(repo){
+
+  job("create_configmap") {
+    scm {
+        git {
+        remote {
+                url(repo)
+              }
+            branch("master")
+        }
+    }
+
+    logRotator {
+      daysToKeep(-1)
+      numToKeep(10)
+      artifactDaysToKeep(-1)
+      artifactNumToKeep(-1)
+    }
+
+      steps {
+      shell(getShell())
+      }
+  }
+}
+
+
+private String getShell() {
+
+    String var_shell
+    var_shell="""
+cp /tmp/config ~/.kube/
+kubectl apply -f /tmp/configmap.yaml
+sleep 60
+kubectl get nodes
+"""
+
+  return var_shell
+}
+
+
+def createView() {
+
+  listView("Configure") {
+      description("Configure")
+      filterBuildQueue()
+      filterExecutors()
+      jobs {
+          //name('release-projectA')
+          regex(/'.*create.*'/)
+      }
+      columns {
+          status()
+          weather()
+          name()
+          lastSuccess()
+          lastFailure()
+          lastDuration()
+          buildButton()
+      }
+  }
+
+}
