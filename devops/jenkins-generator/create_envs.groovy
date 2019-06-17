@@ -8,7 +8,8 @@
 //  println name
   //println data
 createJob("https://github.com/fndiaz/hello-devops.git")
-createJob2("https://github.com/fndiaz/hello-devops.git"
+createJob2("https://github.com/fndiaz/hello-devops.git")
+createView()
 //}
 
 
