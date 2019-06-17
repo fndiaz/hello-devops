@@ -119,7 +119,7 @@ def createView() {
       filterExecutors()
       jobs {
           //name('release-projectA')
-          regex(/'.*create.*'/)
+          regex('.*create.*')
       }
       columns {
           status()
